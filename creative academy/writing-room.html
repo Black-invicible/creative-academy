@@ -1,153 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Writing Room | Creative Academy</title>
-<link rel="stylesheet" href="css/editor.css">
-<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Writing Room | Creative Academy</title>
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-<header class="editor-header">
-<div class="logo">
-<h2>Creative Academy</h2>
-</div>
-<div class="actions">
-<button id="saveBtn">💾 Save</button>
-<button>📤 Share</button>
-<button>🖨 Export</button>
-</div>
-</header>
-<div class="workspace">
-<!-- Sidebar -->
-<aside class="sidebar">
-<h3>My Drafts</h3>
-<button class="new-btn">
-+ New Draft
-</button>
-<div class="draft-list">
-<div class="draft active">
-<h4>Journey To The End</h4>
-<small>Updated Today</small>
-</div>
-<div class="draft">
-<h4>Frozen Heart</h4>
-<small>Yesterday</small>
-</div>
-<div class="draft">
-<h4>Dream Chaser</h4>
-<small>2 Days Ago</small>
-</div>
-</div>
-</aside>
-<!-- Editor -->
-<main class="editor">
-<input
-type="text"
-placeholder="Document Title"
-class="title">
-<!-- ==========================
-RICH TEXT TOOLBAR
-========================== -->
-<div class="toolbar">
-<button onclick="format('bold')" title="Bold">
-<b>B</b>
-</button>
-<button onclick="format('italic')" title="Italic">
-<i>I</i>
-</button>
-<button onclick="format('underline')" title="Underline">
-<u>U</u>
-</button>
-<button onclick="format('insertUnorderedList')" title="Bullet List">
-• List
-</button>
-<button onclick="format('insertOrderedList')" title="Numbered List">
-1. List
-</button>
-<button onclick="format('justifyLeft')" title="Align Left">
-⬅
-</button>
-<button onclick="format('justifyCenter')" title="Center">
-⬌
-</button>
-<button onclick="format('justifyRight')" title="Align Right">
-➡
-</button>
-<button onclick="format('undo')" title="Undo">
-↶
-</button>
-<button onclick="format('redo')" title="Redo">
-↷
-</button>
-<button onclick="insertDate()">
-📅 Date
-</button>
-</div>
-<div
-class="text-editor"
-contenteditable="true">
-<h2>Start writing...</h2>
-<p>
-Every masterpiece begins with a single sentence.
-Write your story here.
-</p>
-</div>
-</main>
-<!-- Right Panel -->
-<aside class="details">
-<h3>Document Info</h3>
-<div class="info">
-<p>Words</p>
-<span id="wordCount">
-0
-</span>
-</div>
-<div class="info">
-<p>Characters</p>
-<span id="charCount">
-0
-</span>
-</div>
-<div class="info">
-<p>Reading Time</p>
-<span id="readingTime">
-0 min
-</span>
-</div>
-<hr>
-<h3>Comments</h3>
-<div class="comment">
-<strong>CT Black</strong>
-<p>
-Nice introduction.
-</p>
-</div>
-<div class="comment">
-<strong>Nora</strong>
-<p>
-Chapter one is complete.
-</p>
-</div>
-<input
-placeholder="Leave a comment..."
->
-</aside>
-</div>
-<script>
-const editor = document.querySelector(".text-editor");
-const wordCount = document.getElementById("wordCount");
-const charCount = document.getElementById("charCount");
-const readingTime = document.getElementById("readingTime");
-editor.addEventListener("input",()=>{
-const text = editor.innerText;
-const words = text.trim().split(/\s+/).filter(Boolean);
-wordCount.innerText = words.length;
-charCount.innerText = text.length;
-readingTime.innerText =
-Math.max(1,Math.ceil(words.length/200))
-+" min";
-});
-</script>
+  <header class="editor-header">
+    <div class="logo">
+      <h2>Creative Academy</h2>
+    </div>
+    <div class="actions">
+      <button id="saveBtn">💾 Save</button>
+      <button>📤 Share</button>
+      <button>🖨 Export</button>
+    </div>
+  </header>
+
+  <div class="workspace">
+    <aside class="sidebar">
+      <h3>My Drafts</h3>
+      <button class="new-btn">+ New Draft</button>
+      <div class="draft-list">
+        <div class="draft active">
+          <h4>Journey To The End</h4>
+          <small>Updated Today</small>
+        </div>
+        <div class="draft">
+          <h4>Frozen Heart</h4>
+          <small>Yesterday</small>
+        </div>
+        <div class="draft">
+          <h4>Dream Chaser</h4>
+          <small>2 Days Ago</small>
+        </div>
+      </div>
+    </aside>
+
+    <main class="editor">
+      <input type="text" placeholder="Document Title" class="title">
+
+      <div class="toolbar">
+        <button onclick="format('bold')" title="Bold"><b>B</b></button>
+        <button onclick="format('italic')" title="Italic"><i>I</i></button>
+        <button onclick="format('underline')" title="Underline"><u>U</u></button>
+        <button onclick="format('insertUnorderedList')" title="Bullet List">• List</button>
+        <button onclick="format('insertOrderedList')" title="Numbered List">1. List</button>
+        <button onclick="format('justifyLeft')" title="Align Left">⬅</button>
+        <button onclick="format('justifyCenter')" title="Center">⬌</button>
+        <button onclick="format('justifyRight')" title="Align Right">➡</button>
+        <button onclick="format('undo')" title="Undo">↶</button>
+        <button onclick="format('redo')" title="Redo">↷</button>
+        <button onclick="insertDate()">📅 Date</button>
+      </div>
+
+      <div class="text-editor" contenteditable="true">
+        <h2>Start writing...</h2>
+        <p>
+          Every masterpiece begins with a single sentence.
+          Write your story here.
+        </p>
+      </div>
+    </main>
+
+    <aside class="details">
+      <h3>Document Info</h3>
+      <div class="info">
+        <p>Words</p>
+        <span id="wordCount">0</span>
+      </div>
+      <div class="info">
+        <p>Characters</p>
+        <span id="charCount">0</span>
+      </div>
+      <div class="info">
+        <p>Reading Time</p>
+        <span id="readingTime">0 min</span>
+      </div>
+      <hr>
+      <h3>Comments</h3>
+      <div class="comment">
+        <strong>CT Black</strong>
+        <p>Nice introduction.</p>
+      </div>
+      <div class="comment">
+        <strong>Nora</strong>
+        <p>Chapter one is complete.</p>
+      </div>
+      <input placeholder="Leave a comment...">
+    </aside>
+  </div>
+
+  <script src="js/editor.js"></script>
 </body>
 </html>

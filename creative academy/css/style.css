@@ -2,214 +2,296 @@
    GOOGLE FONTS
 =========================== */
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Space+Mono:wght@400;700&display=swap');
+
+:root {
+  --bg: #F4EFE5;
+  --panel: #F8F5EE;
+  --text: #1d1b1a;
+  --muted: #3d3d3d;
+  --line: #222;
+  --accent: #C45C4A;
+  --card-shadow: 0 18px 35px rgba(0, 0, 0, 0.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(0, 0, 0, 0.04) 0 2px,
+    transparent 2px 22px
+  );
+  font-family: 'Libre Baskerville', serif;
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
 /* ===========================
-RESET
+   NAVBAR
 =========================== */
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
+header {
+  position: sticky;
+  top: 0;
+  background: rgba(244, 239, 229, 0.96);
+  backdrop-filter: blur(10px);
+  border-bottom: 2px solid var(--line);
+  z-index: 999;
 }
-html{
-scroll-behavior:smooth;
+
+.navbar {
+  max-width: 1300px;
+  margin: auto;
+  padding: 22px 35px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
 }
-body{
-background:#F4EFE5;
-background-image:
-repeating-linear-gradient(
-45deg,
-rgba(0,0,0,.04) 0px,
-rgba(0,0,0,.04) 2px,
-transparent 2px,
-transparent 22px
-);
-font-family:'Libre Baskerville',serif;
-color:#1d1b1a;
-overflow-x:hidden;
+
+.logo h1 {
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  font-weight: 700;
+  letter-spacing: 2px;
 }
+
+.navbar ul {
+  display: flex;
+  gap: clamp(0.75rem, 2vw, 2.8rem);
+  list-style: none;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.navbar a {
+  text-decoration: none;
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 0.18em;
+  font-size: 0.82rem;
+  color: var(--line);
+  transition: 0.3s ease;
+}
+
+.navbar a:hover {
+  color: var(--accent);
+}
+
 /* ===========================
-NAVBAR
+   HERO
 =========================== */
-header{
-position:sticky;
-top:0;
-background:#F4EFE5;
-border-bottom:2px solid #222;
-z-index:999;
+.hero {
+  max-width: 1300px;
+  margin: auto;
+  padding: 130px 35px 90px;
 }
-.navbar{
-max-width:1300px;
-margin:auto;
-padding:22px 35px;
-display:flex;
-justify-content:space-between;
-align-items:center;
+
+.small {
+  font-family: 'Space Mono', monospace;
+  font-size: clamp(0.7rem, 1vw, 0.9rem);
+  letter-spacing: 0.28em;
+  color: var(--accent);
+  margin-bottom: 30px;
 }
-.logo h1{
-font-size:52px;
-font-weight:700;
-letter-spacing:2px;
+
+.hero h1 {
+  font-size: clamp(3.4rem, 8vw, 6rem);
+  line-height: 0.95;
+  margin-bottom: 40px;
 }
-.navbar ul{
-display:flex;
-gap:45px;
-list-style:none;
+
+.description {
+  font-size: clamp(1.2rem, 2vw, 1.75rem);
+  line-height: 1.7;
+  max-width: 760px;
+  color: var(--muted);
 }
-.navbar a{
-text-decoration:none;
-font-family:'Space Mono',monospace;
-letter-spacing:3px;
-font-size:14px;
-color:#222;
-transition:.3s;
+
+.buttons {
+  display: flex;
+  gap: 25px;
+  margin-top: 60px;
+  flex-wrap: wrap;
 }
-.navbar a:hover{
-color:#C45C4A;
+
+.primary,
+.secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 180px;
+  padding: 18px 36px;
+  text-decoration: none;
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 0.18em;
+  transition: 0.3s ease;
+  text-align: center;
 }
+
+.primary {
+  background: #1e1b19;
+  color: white;
+}
+
+.primary:hover {
+  background: var(--accent);
+}
+
+.secondary {
+  border: 2px solid var(--line);
+  color: var(--line);
+}
+
+.secondary:hover {
+  background: var(--line);
+  color: white;
+}
+
 /* ===========================
-HERO
+   DISCIPLINES
 =========================== */
-.hero{
-max-width:1300px;
-margin:auto;
-padding:130px 35px;
+.disciplines {
+  max-width: 1300px;
+  margin: auto;
+  padding: 90px 35px;
 }
-.small{
-font-family:'Space Mono',monospace;
-font-size:14px;
-letter-spacing:5px;
-color:#C45C4A;
-margin-bottom:30px;
+
+.disciplines h2 {
+  font-size: clamp(2.2rem, 5vw, 3.25rem);
+  margin-bottom: 60px;
 }
-.hero h1{
-font-size:95px;
-line-height:0.95;
-margin-bottom:40px;
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 35px;
 }
-.description{
-font-size:28px;
-line-height:1.7;
-max-width:760px;
-color:#3d3d3d;
+
+.card {
+  background: var(--panel);
+  border: 2px solid var(--line);
+  padding: 35px 28px;
+  transition: 0.35s ease;
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.04);
 }
-.buttons{
-display:flex;
-gap:25px;
-margin-top:60px;
-flex-wrap:wrap;
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--card-shadow);
 }
-.primary{
-display:inline-block;
-padding:18px 42px;
-background:#1e1b19;
-color:white;
-text-decoration:none;
-font-family:'Space Mono',monospace;
-letter-spacing:3px;
-transition:.3s;
+
+.card h3 {
+  font-size: clamp(1.8rem, 3vw, 2.2rem);
+  margin-bottom: 20px;
 }
-.primary:hover{
-background:#C45C4A;
+
+.card p {
+  font-size: 1.08rem;
+  line-height: 1.8;
 }
-.secondary{
-display:inline-block;
-padding:18px 42px;
-border:2px solid #222;
-color:#222;
-text-decoration:none;
-font-family:'Space Mono',monospace;
-letter-spacing:3px;
-transition:.3s;
-}
-.secondary:hover{
-background:#222;
-color:white;
-}
+
 /* ===========================
-DISCIPLINES
+   CTA
 =========================== */
-.disciplines{
-max-width:1300px;
-margin:auto;
-padding:90px 35px;
+.cta {
+  padding: 120px 35px 80px;
+  text-align: center;
 }
-.disciplines h2{
-font-size:52px;
-margin-bottom:60px;
+
+.cta h2 {
+  font-size: clamp(2.6rem, 7vw, 4.2rem);
+  margin-bottom: 30px;
 }
-.cards{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
-gap:35px;
+
+.cta p {
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  margin-bottom: 40px;
 }
-.card{
-background:#F8F5EE;
-border:2px solid #222;
-padding:35px;
-transition:.35s;
-}
-.card:hover{
-transform:translateY(-10px);
-box-shadow:0 20px 35px rgba(0,0,0,.12);
-}
-.card h3{
-font-size:36px;
-margin-bottom:20px;
-}
-.card p{
-font-size:18px;
-line-height:1.8;
-}
+
 /* ===========================
-CTA
+   FOOTER
 =========================== */
-.cta{
-padding:120px 35px;
-text-align:center;
+footer {
+  padding: 40px 20px;
+  text-align: center;
+  border-top: 2px solid var(--line);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.78rem;
 }
-.cta h2{
-font-size:70px;
-margin-bottom:30px;
-}
-.cta p{
-font-size:24px;
-margin-bottom:40px;
-}
+
 /* ===========================
-FOOTER
+   RESPONSIVE
 =========================== */
-footer{
-padding:40px;
-text-align:center;
-border-top:2px solid #222;
-font-family:'Space Mono',monospace;
+@media (max-width: 900px) {
+  .navbar {
+    flex-direction: column;
+    gap: 16px;
+    padding-top: 18px;
+    padding-bottom: 18px;
+  }
+
+  .navbar ul {
+    justify-content: center;
+    gap: 12px 18px;
+  }
+
+  .hero {
+    padding-top: 90px;
+  }
 }
-/* ===========================
-RESPONSIVE
-=========================== */
-@media(max-width:900px){
-.navbar{
-flex-direction:column;
-gap:20px;
-}
-.navbar ul{
-flex-wrap:wrap;
-justify-content:center;
-gap:20px;
-}
-.hero{
-padding:90px 25px;
-}
-.hero h1{
-font-size:64px;
-}
-.description{
-font-size:20px;
-}
-.disciplines h2{
-font-size:40px;
-}
-.cta h2{
-font-size:48px;
-}
+
+@media (max-width: 560px) {
+  .navbar {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .navbar ul {
+    width: 100%;
+    gap: 10px 14px;
+  }
+
+  .navbar a {
+    letter-spacing: 0.08em;
+  }
+
+  .hero,
+  .disciplines,
+  .cta {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .primary,
+  .secondary {
+    width: 100%;
+  }
 }
