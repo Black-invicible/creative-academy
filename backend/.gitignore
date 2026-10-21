@@ -1,0 +1,150 @@
+const storyEditor = document.getElementById('storyEditor');
+const saveBtn = document.getElementById('saveBtn');
+const exportCsvBtn = document.getElementById('exportCsvBtn');
+const storyList = document.getElementById('storyList');
+
+const fields = {
+  title: document.getElementById('storyTitle'),
+  genre: document.getElementById('storyGenre'),
+  subgenre: document.getElementById('storySubgenre'),
+  tone: document.getElementById('storyTone'),
+  synopsis: document.getElementById('storySynopsis'),
+  tags: document.getElementById('storyTags'),
+};
+
+const wordCount = document.getElementById('wordCount');
+const charCount = document.getElementById('charCount');
+const readingTime = document.getElementById('readingTime');
+
+function updateStats() {
+  const text = storyEditor.innerText || '';
+  const words = text.trim().split(/\s+/).filter(Boolean);
+  const clean = Array.isArray(words) ? words : [];
+
+  wordCount.textContent = String(clean.length);
+  charCount.textContent = String(text.length);
+  readingTime.textContent = `${Math.max(1, Math.ceil(clean.length / 200))} min`;
+}
+
+storyEditor.addEventListener('input', updateStats);
+
+document.querySelectorAll('[data-command]').forEach((button) => {
+  button.addEventListener('click', () => {
+    const command = button.dataset.command;
+    const value = button.dataset.value || null;
+
+    if (command === 'formatBlock') {
+      document.execCommand(command, false, value);
+      return;
+    }
+
+    document.execCommand(command, false, value);
+    storyEditor.focus();
+  });
+});
+
+document.getElementById('insertDateBtn').addEventListener('click', () => {
+  document.execCommand('insertText', false, new Date().toLocaleDateString());
+});
+
+document.getElementById('clearEditorBtn').addEventListener('click', () => {
+  storyEditor.innerHTML = '<h2>Start writing your story...</h2><p>Every great story begins with a single sentence. Build a world, shape a voice, and write the kind of tale you want to read.</p>';
+  updateStats();
+});
+
+async function fetchStories() {
+  const response = await fetch('/api/stories');
+  const stories = await response.json();
+  renderStories(stories);
+}
+
+function renderStories(stories) {
+  if (!stories.length) {
+    storyList.innerHTML = '<div class="story-card"><h3>No stories yet</h3><p>Create your first draft to begin your Creative Academy library.</p></div>';
+    return;
+  }
+
+  storyList.innerHTML = stories
+    .map(
+      (story) => `
+        <article class="story-card">
+          <h3>${escapeHtml(story.title)}</h3>
+          <div class="story-meta">
+            <span>${escapeHtml(story.genre)}</span>
+            <span>${escapeHtml(story.status || 'draft')}</span>
+            <span>${Number(story.word_count || 0)} words</span>
+          </div>
+          <p>${escapeHtml(story.synopsis || 'No synopsis yet.')}</p>
+          <button type="button" data-id="${story.id}">Open</button>
+        </article>
+      `
+    )
+    .join('');
+
+  storyList.querySelectorAll('button[data-id]').forEach((button) => {
+    button.addEventListener('click', async () => {
+      const story = stories.find((item) => String(item.id) === button.dataset.id);
+      if (!story) return;
+
+      fields.title.value = story.title || '';
+      fields.genre.value = story.genre || 'Fantasy';
+      fields.subgenre.value = story.subgenre || '';
+      fields.tone.value = story.tone || '';
+      fields.synopsis.value = story.synopsis || '';
+      fields.tags.value = story.tags || '';
+      storyEditor.innerHTML = story.content || '<p>Start writing...</p>';
+      updateStats();
+    });
+  });
+}
+
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+saveBtn.addEventListener('click', async () => {
+  const payload = {
+    title: fields.title.value.trim(),
+    genre: fields.genre.value,
+    subgenre: fields.subgenre.value.trim(),
+    tone: fields.tone.value.trim(),
+    synopsis: fields.synopsis.value.trim(),
+    content: storyEditor.innerHTML.trim(),
+    tags: fields.tags.value.trim(),
+    status: 'draft',
+  };
+
+  if (!payload.title || !payload.genre || !payload.content) {
+    alert('Please add a title, genre, and content before saving.');
+    return;
+  }
+
+  const response = await fetch('/api/stories', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  });
+
+  if (!response.ok) {
+    const error = await response.json();
+    alert(error.message || 'Save failed.');
+    return;
+  }
+
+  alert('Story saved successfully!');
+  fetchStories();
+});
+
+exportCsvBtn.addEventListener('click', async () => {
+  window.location.href = '/api/export/csv';
+});
+
+updateStats();
+fetchStories();

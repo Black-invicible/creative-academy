@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Creative Academy Workspace</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">CWA</div>
+        <nav>
+          <button class="nav-button active">Write</button>
+          <button class="nav-button">Library</button>
+          <button class="nav-button">Characters</button>
+          <button class="nav-button">Worlds</button>
+          <button class="nav-button">Export</button>
+        </nav>
+      </aside>
+
+      <main class="workspace">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Creative Academy</p>
+            <h1>Story Studio</h1>
+          </div>
+          <div class="topbar-actions">
+            <button id="exportCsvBtn" class="secondary-btn">Export CSV</button>
+            <button id="saveBtn" class="primary-btn">Save Story</button>
+          </div>
+        </header>
+
+        <section class="story-form">
+          <div class="field-grid">
+            <label>
+              Title
+              <input id="storyTitle" type="text" placeholder="The Last Ember" />
+            </label>
+
+            <label>
+              Genre
+              <select id="storyGenre">
+                <option value="Fantasy">Fantasy</option>
+                <option value="Science Fiction">Science Fiction</option>
+                <option value="Romance">Romance</option>
+                <option value="Mystery">Mystery</option>
+                <option value="Thriller">Thriller</option>
+                <option value="Horror">Horror</option>
+                <option value="Adventure">Adventure</option>
+                <option value="Drama">Drama</option>
+                <option value="Comedy">Comedy</option>
+                <option value="Poetry">Poetry</option>
+                <option value="Dystopian">Dystopian</option>
+                <option value="Historical">Historical</option>
+                <option value="Magical Realism">Magical Realism</option>
+                <option value="Young Adult">Young Adult</option>
+                <option value="Fan Fiction">Fan Fiction</option>
+                <option value="Other">Other</option>
+              </select>
+            </label>
+
+            <label>
+              Subgenre
+              <input id="storySubgenre" type="text" placeholder="Epic fantasy, cyberpunk, gothic romance..." />
+            </label>
+
+            <label>
+              Tone
+              <input id="storyTone" type="text" placeholder="Dark, hopeful, cinematic..." />
+            </label>
+          </div>
+
+          <label>
+            Synopsis
+            <textarea id="storySynopsis" rows="3" placeholder="Give a quick description of your world, conflict, and main emotional arc."></textarea>
+          </label>
+
+          <label>
+            Tags
+            <input id="storyTags" type="text" placeholder="magic, grief, betrayal, war, revenge" />
+          </label>
+        </section>
+
+        <section class="editor-panel">
+          <div class="toolbar">
+            <button type="button" data-command="bold"><strong>B</strong></button>
+            <button type="button" data-command="italic"><em>I</em></button>
+            <button type="button" data-command="underline"><u>U</u></button>
+            <button type="button" data-command="insertUnorderedList">• List</button>
+            <button type="button" data-command="insertOrderedList">1. List</button>
+            <button type="button" data-command="formatBlock" data-value="h2">H2</button>
+            <button type="button" data-command="formatBlock" data-value="blockquote">Quote</button>
+            <button type="button" id="insertDateBtn">Date</button>
+            <button type="button" id="clearEditorBtn" class="warn">Clear</button>
+          </div>
+
+          <div id="storyEditor" class="story-editor" contenteditable="true" spellcheck="true">
+            <h2>Start writing your story...</h2>
+            <p>Every great story begins with a single sentence. Build a world, shape a voice, and write the kind of tale you want to read.</p>
+          </div>
+        </section>
+
+        <section class="story-insights">
+          <div class="stat-box">
+            <span>Words</span>
+            <strong id="wordCount">0</strong>
+          </div>
+          <div class="stat-box">
+            <span>Characters</span>
+            <strong id="charCount">0</strong>
+          </div>
+          <div class="stat-box">
+            <span>Reading Time</span>
+            <strong id="readingTime">0 min</strong>
+          </div>
+        </section>
+
+        <section class="saved-stories">
+          <div class="saved-header">
+            <h2>Saved Stories</h2>
+          </div>
+          <div id="storyList" class="story-list"></div>
+        </section>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

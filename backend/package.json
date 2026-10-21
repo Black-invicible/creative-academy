@@ -1,0 +1,24 @@
+{
+  "name": "creative-academy-backend",
+  "version": "1.0.0",
+  "description": "Backend and writing workspace for Creative Academy",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": [
+    "creative-academy",
+    "writing",
+    "backend",
+    "sqlite",
+    "csv"
+  ],
+  "author": "Black-invicible",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "sqlite3": "^5.1.7"
+  }
+}
