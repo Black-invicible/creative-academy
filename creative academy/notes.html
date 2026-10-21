@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Team Notes | Creative Academy</title>
+<link rel="stylesheet" href="css/notes.css">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+<h1>📝 Team Notes</h1>
+<button id="newNote">
++ Create Note
+</button>
+</header>
+<div class="container">
+<!-- Left -->
+<section class="notes">
+<div class="note">
+<h2>
+Website Meeting
+</h2>
+<p>
+Finish the homepage before Friday.
+</p>
+<div class="footer">
+<span>
+👤 CT Black
+</span>
+<span>
+🕒 Today 10:30 AM
+</span>
+</div>
+<div class="actions">
+<button>❤️ 12</button>
+<button>💬 6</button>
+<button>📌 Pin</button>
+</div>
+</div>
+<div class="note">
+<h2>
+Programming Class
+</h2>
+<p>
+Node.js practical starts tomorrow.
+</p>
+<div class="footer">
+<span>
+👤 David
+</span>
+<span>
+🕒 Yesterday
+</span>
+</div>
+<div class="actions">
+<button>❤️ 8</button>
+<button>💬 2</button>
+<button>📌 Pin</button>
+</div>
+</div>
+</section>
+<!-- Right -->
+<aside>
+<h2>
+Create Note
+</h2>
+<input
+type="text"
+placeholder="Title"
+id="title"
+>
+<textarea
+placeholder="Write something..."
+id="content"
+></textarea>
+<select id="category">
+<option>Writing</option>
+<option>Programming</option>
+<option>Design</option>
+<option>Research</option>
+<option>General</option>
+</select>
+<button id="publish">
+Publish
+</button>
+</aside>
+</div>
+<script src="js/notes.js"></script>
+</body>
+</html>

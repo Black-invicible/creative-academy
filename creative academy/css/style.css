@@ -1,0 +1,215 @@
+/* ===========================
+   GOOGLE FONTS
+=========================== */
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Space+Mono:wght@400;700&display=swap');
+/* ===========================
+RESET
+=========================== */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+html{
+scroll-behavior:smooth;
+}
+body{
+background:#F4EFE5;
+background-image:
+repeating-linear-gradient(
+45deg,
+rgba(0,0,0,.04) 0px,
+rgba(0,0,0,.04) 2px,
+transparent 2px,
+transparent 22px
+);
+font-family:'Libre Baskerville',serif;
+color:#1d1b1a;
+overflow-x:hidden;
+}
+/* ===========================
+NAVBAR
+=========================== */
+header{
+position:sticky;
+top:0;
+background:#F4EFE5;
+border-bottom:2px solid #222;
+z-index:999;
+}
+.navbar{
+max-width:1300px;
+margin:auto;
+padding:22px 35px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+.logo h1{
+font-size:52px;
+font-weight:700;
+letter-spacing:2px;
+}
+.navbar ul{
+display:flex;
+gap:45px;
+list-style:none;
+}
+.navbar a{
+text-decoration:none;
+font-family:'Space Mono',monospace;
+letter-spacing:3px;
+font-size:14px;
+color:#222;
+transition:.3s;
+}
+.navbar a:hover{
+color:#C45C4A;
+}
+/* ===========================
+HERO
+=========================== */
+.hero{
+max-width:1300px;
+margin:auto;
+padding:130px 35px;
+}
+.small{
+font-family:'Space Mono',monospace;
+font-size:14px;
+letter-spacing:5px;
+color:#C45C4A;
+margin-bottom:30px;
+}
+.hero h1{
+font-size:95px;
+line-height:0.95;
+margin-bottom:40px;
+}
+.description{
+font-size:28px;
+line-height:1.7;
+max-width:760px;
+color:#3d3d3d;
+}
+.buttons{
+display:flex;
+gap:25px;
+margin-top:60px;
+flex-wrap:wrap;
+}
+.primary{
+display:inline-block;
+padding:18px 42px;
+background:#1e1b19;
+color:white;
+text-decoration:none;
+font-family:'Space Mono',monospace;
+letter-spacing:3px;
+transition:.3s;
+}
+.primary:hover{
+background:#C45C4A;
+}
+.secondary{
+display:inline-block;
+padding:18px 42px;
+border:2px solid #222;
+color:#222;
+text-decoration:none;
+font-family:'Space Mono',monospace;
+letter-spacing:3px;
+transition:.3s;
+}
+.secondary:hover{
+background:#222;
+color:white;
+}
+/* ===========================
+DISCIPLINES
+=========================== */
+.disciplines{
+max-width:1300px;
+margin:auto;
+padding:90px 35px;
+}
+.disciplines h2{
+font-size:52px;
+margin-bottom:60px;
+}
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+gap:35px;
+}
+.card{
+background:#F8F5EE;
+border:2px solid #222;
+padding:35px;
+transition:.35s;
+}
+.card:hover{
+transform:translateY(-10px);
+box-shadow:0 20px 35px rgba(0,0,0,.12);
+}
+.card h3{
+font-size:36px;
+margin-bottom:20px;
+}
+.card p{
+font-size:18px;
+line-height:1.8;
+}
+/* ===========================
+CTA
+=========================== */
+.cta{
+padding:120px 35px;
+text-align:center;
+}
+.cta h2{
+font-size:70px;
+margin-bottom:30px;
+}
+.cta p{
+font-size:24px;
+margin-bottom:40px;
+}
+/* ===========================
+FOOTER
+=========================== */
+footer{
+padding:40px;
+text-align:center;
+border-top:2px solid #222;
+font-family:'Space Mono',monospace;
+}
+/* ===========================
+RESPONSIVE
+=========================== */
+@media(max-width:900px){
+.navbar{
+flex-direction:column;
+gap:20px;
+}
+.navbar ul{
+flex-wrap:wrap;
+justify-content:center;
+gap:20px;
+}
+.hero{
+padding:90px 25px;
+}
+.hero h1{
+font-size:64px;
+}
+.description{
+font-size:20px;
+}
+.disciplines h2{
+font-size:40px;
+}
+.cta h2{
+font-size:48px;
+}
+}
